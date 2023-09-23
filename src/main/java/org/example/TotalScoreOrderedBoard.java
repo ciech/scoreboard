@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-
+/**
+ * Represents a scoreboard ordered by total score of the matches.
+ */
 class TotalScoreOrderedBoard implements Scoreboard {
 
     private final Board board = new Board(totalScoreBasedComparator());

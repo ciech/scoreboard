@@ -3,7 +3,9 @@ package org.example;
 import java.time.Instant;
 import java.util.Objects;
 
-
+/**
+ * Represents a match between two teams.
+ */
 class Match {
 
     public record Id(String value) {
@@ -28,10 +30,18 @@ class Match {
         }
         return newScore;
     }
+
+    /**
+     * Constructor to create a Match object.
+     * @param home The home team name.
+     * @param away The away team name.
+     * @param startTime The start time of the match.
+     * @throws IllegalArgumentException if the home or away name is invalid.
+     */
     public Match(final String home, final String away, final Instant startTime) {
         this.home = checkName(home);
         this.away = checkName(away);
-        this.startTime = startTime;
+        this.startTime = Objects.requireNonNull(startTime);
     }
 
     public int getHomeScore() {
@@ -54,6 +64,12 @@ class Match {
         return startTime;
     }
 
+    /**
+     * Update the scores for the teams.
+     * @param homeScore The updated score for the home team.
+     * @param awayScore The updated score for the away team.
+     * @throws IllegalArgumentException if the provided scores are invalid.
+     */
     public void updateScore(int homeScore, int awayScore) {
         this.homeScore = checkScore(homeScore, this.homeScore, "home");
         this.awayScore = checkScore(awayScore, this.awayScore, "away");
